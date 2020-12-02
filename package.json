@@ -1,0 +1,14 @@
+{
+  "devDependencies": {
+    "nodemon": "^2.0.6",
+    "sucrase": "^3.16.0"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.11.1",
+    "mongoose-auto-increment": "^5.0.1"
+  },
+  "scripts": {
+    "dev": "nodemon src/server.js"
+  }
+}
