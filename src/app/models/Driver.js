@@ -31,6 +31,12 @@ const DriverSchema = new mongoose.Schema(
         is_pne: {
             type: Boolean,
             required: true
+        },
+        arrivalTime: {
+            type: Date
+        },
+        departureTime: {
+            type: Date
         }
     },
     {

@@ -1,3 +1,4 @@
+import moment from 'moment'
 import Driver from "../models/Driver"
 
 class DriverController {
@@ -69,6 +70,51 @@ class DriverController {
             return res.status(500).json({ message: `Erro no servidor! ${error}` })
         }
         return res.json({ message: "O motorista foi excluído" })
+    }
+
+    async arrival(req, res) {
+        const arrivalTime = moment()
+
+        if (!req.params.id) {
+            return res.status(400).json({ message: "É necessário passar o ID do motorista" })
+        }
+
+        try {
+            const driver = await Driver.findOneAndUpdate({
+                _id: req.params.id
+            }, {
+                arrivalTime
+            }, { new: true })
+
+            return res.status(201).json(driver)
+        } catch (error) {
+            return res.status(500).json({ message: `Erro no servidor! ${error}` })
+        }
+    }
+
+    async departure(req, res) {
+        const departureTime = moment()
+
+        if (!req.params.id) {
+            return res.status(400).json({ message: "É necessário passar o ID do motorista" })
+        }
+
+        try {
+            const driver = await Driver.findOneAndUpdate({
+                _id: req.params.id
+            }, {
+                departureTime
+            }, { new: true })
+
+            let arrival = driver.arrivalTime
+
+            const totalTime = (departureTime.diff(arrival, 'minutes'))
+
+            return res.status(201).json({ message: `Você ficou ${totalTime} minutos no estacionamento.` })
+
+        } catch (error) {
+            return res.status(500).json({ message: `Erro no servidor! ${error}` })
+        }
     }
 }
 
