@@ -1,31 +1,35 @@
 import mongoose from "mongoose";
 import autoIncrement from "mongoose-auto-increment";
+import Driver from "./Driver"
 
 import conn from "../../config/dbConnection";
 
 mongoose.connect(conn.url);
 autoIncrement.initialize(mongoose);
 
-const ParkingPlaceSchema = new mongoose.Schema(
+const ParkingSpaceSchema = new mongoose.Schema(
     {
         isFree: {
             type: Boolean,
             required: true
         },
-        //history: {
-        //
-        //},
+        driver: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Driver',
+            required: false
+        }],
+    },
     {
         versionKey: false,
         timestamps: true,
     }
 );
 
-ParkingPlaceSchema.plugin(autoIncrement.plugin, {
-    model: "ParkingPlace",
+ParkingSpaceSchema.plugin(autoIncrement.plugin, {
+    model: "ParkingSpace",
     field: "id",
     startAt: 1,
     incrementBy: 1,
 });
 
-export default mongoose.model("Parking", ParkingPlaceSchema);
+export default mongoose.model("ParkingSpace", ParkingSpaceSchema);

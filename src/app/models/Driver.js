@@ -12,10 +12,14 @@ const DriverSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-        licensePlate: {
+        cars: [{
+            licensePlate: String,
+            brand: String
+        }],
+        /*licensePlate: {
             type: String,
             required: true
-        },
+        },*/
         cpf: {
             type: String,
             required: true
@@ -28,16 +32,16 @@ const DriverSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-        is_pne: {
+        deficiency: {
             type: Boolean,
             required: true
         },
-        arrivalTime: {
-            type: Date
-        },
-        departureTime: {
-            type: Date
-        }
+        /*       arrivalTime: {
+                   type: Date
+               },
+               departureTime: {
+                   type: Date
+               }*/
     },
     {
         versionKey: false,

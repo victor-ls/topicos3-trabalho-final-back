@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import autoIncrement from "mongoose-auto-increment";
-
+import Driver from "../models/Driver"
 import conn from "../../config/dbConnection";
 
 mongoose.connect(conn.url);
@@ -8,19 +8,24 @@ autoIncrement.initialize(mongoose);
 
 const ParkingSchema = new mongoose.Schema(
     {
-        totalParkingPlaces: {
+        name: {
+            type: String,
+            required: true
+        },
+        parkingSpacesTotal: {
+            type: Number,
+            required: true
+        },
+        /*driver: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Driver',
+            required: false
+        },*/
+        parkingSpacesOccupied: {
             type: Number,
             required: true
         },
 
-        occupiedParkingPlaces: {
-            type: Number,
-            required: true
-        },
-        totalOccupiedParkingPlaces: {
-            type: Number,
-            required: true
-        }
     },
     {
         versionKey: false,

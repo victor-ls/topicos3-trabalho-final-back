@@ -13,7 +13,7 @@ class DriverController {
     }
 
     async store(req, res) {
-        const { name, licensePlate, cpf, email, password, is_pne } = req.body
+        const { name, cars, cpf, email, password, deficiency } = req.body
 
         const driver = await Driver.findOne({ 'cpf': cpf })
 
@@ -21,7 +21,7 @@ class DriverController {
             return res.status(400).json({ message: "Motorista já está cadastrado" })
         }
 
-        if (!(name && licensePlate && cpf && email && password && is_pne)) {
+        if (!(name && cars && cpf && email && password && deficiency)) {
             return res.status(422).json({ message: "Nome, Placa do Carro, CPF, Email, Senha e Informação de deficiência são obrigatórios" })
         }
 
@@ -33,6 +33,8 @@ class DriverController {
             return res.status(500).json({ message: `Erro no servidor! ${error}` })
         }
     }
+
+    /*
 
     async update(req, res) {
         if (!req.params.id) {
@@ -116,6 +118,7 @@ class DriverController {
             return res.status(500).json({ message: `Erro no servidor! ${error}` })
         }
     }
+    */
 }
 
 export default new DriverController()
