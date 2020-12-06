@@ -41,7 +41,7 @@ class ParkingController {
         }
     }
 
-    async check_ParkingLot(req, res) {
+    async checkParkingLot(req, res) {
         try {
             const parking = await Parking.findOne({ _id: req.params.id })
 

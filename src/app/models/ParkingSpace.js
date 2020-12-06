@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import autoIncrement from "mongoose-auto-increment";
-import Driver from "./Driver"
 
 import conn from "../../config/dbConnection";
 
@@ -13,10 +12,11 @@ const ParkingSpaceSchema = new mongoose.Schema(
             type: Boolean,
             required: true
         },
-        driver: [{
+
+        parkingLot: [{
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Driver',
-            required: false
+            ref: 'Parking',
+            required: true
         }],
     },
     {

@@ -34,8 +34,6 @@ class DriverController {
         }
     }
 
-    /*
-
     async update(req, res) {
         if (!req.params.id) {
             return res.status(400).json({ message: "É necessário passar o ID do motorista" })
@@ -112,13 +110,12 @@ class DriverController {
 
             const totalTime = (departureTime.diff(arrival, 'minutes'))
 
-            return res.status(201).json({ message: `Você ficou ${totalTime} minutos no estacionamento.` })
+            return res.status(201).json({ message: `Você ficou ${totalTime} minutos no estacionamento. Você deve ${totalTime * 0.10} reais` })
 
         } catch (error) {
             return res.status(500).json({ message: `Erro no servidor! ${error}` })
         }
     }
-    */
 }
 
 export default new DriverController()
