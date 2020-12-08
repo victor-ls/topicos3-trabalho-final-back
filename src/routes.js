@@ -16,7 +16,7 @@ routes.post("/driver/departure/:id", DriverController.departure)
 routes.post("/parkingLot", ParkingController.store)
 routes.get("/parkingLot/", ParkingController.index)
 routes.get("/parkingLot/:id", ParkingController.checkParkingLot)
-routes.post("/parkingLot/:parkingLotId", ParkingSpaceController.index)
+routes.get("/parkingLot/:parkingLotId", ParkingSpaceController.index)
 routes.post("/parkingSpaces/:parkingLotId/:numberOfSpaces", getParkingLot, ParkingSpaceController.store)
 
 
