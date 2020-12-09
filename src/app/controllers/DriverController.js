@@ -17,6 +17,8 @@ class DriverController {
 
         const driver = await Driver.findOne({ 'cpf': cpf })
 
+        console.log(driver)
+
         if (driver) {
             return res.status(400).json({ message: "Motorista já está cadastrado" })
         }
@@ -27,6 +29,9 @@ class DriverController {
 
         try {
             const driver = await Driver.create(req.body)
+            console.log(driver)
+
+            //const token = await driver.generateAuthToken()
 
             return res.status(201).json(driver)
         } catch (error) {
@@ -71,6 +76,18 @@ class DriverController {
         }
         return res.json({ message: "O motorista foi excluído" })
     }
+
+    async login(req, res) {
+        console.log('login')
+        //try {
+        console.log(req.driver)
+        const driver = req.driver
+        const token = await driver.generateAuthToken()
+        res.send({ driver, token })
+        //}/* catch (err) {
+        //res.status(400).send()
+    }
+
 
     async arrival(req, res) {
         const arrivalTime = moment()
