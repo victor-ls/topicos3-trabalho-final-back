@@ -83,21 +83,4 @@ DriverSchema.methods.generateAuthToken = async function () {
     return token
 }
 
-DriverSchema.statics.findByCredentials = async function (email, password) {
-    const driver = mongoose.model('Driver').findOne({ email: email })
-    console.log(driver)
-    if (!driver) {
-        throw new Error("Unable to login")
-    }
-    console.log(driver.name)
-
-    const isMatch = await bcrypt.compare(password, driver.password)
-    console.log(isMatch)
-
-    if (!isMatch) {
-        throw new Error('Unable to login')
-    }
-    return driver
-}
-
 export default mongoose.model("Driver", DriverSchema);
