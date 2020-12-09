@@ -1,4 +1,5 @@
 # Parking App
+All example requests are in the Insomnia file
 ## Endpoints
 ## Driver
 ### POST /driver
