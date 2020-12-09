@@ -1,5 +1,18 @@
 # Parking App
 All example requests are in the Insomnia file
+
+Requirements to execute:
+* MongoDB
+* yarn
+
+When cloning the repo, run the command: **yarn** to install all dependencies
+
+All request are made on port 3000
+
+Command to execute the application:
+* yarn dev
+
+
 ## Endpoints
 ## Driver
 ### POST /driver
