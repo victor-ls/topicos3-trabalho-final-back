@@ -31,6 +31,8 @@ List all parking lots
 ### GET /parkingLot/:id
 Show information about a parking lot
 
+## Parking Spaces
+
 ### POST /parkingSpaces/:parkingLotId/:numberOfSpaces
 Sets number of parking spaces on a parking lot
 
