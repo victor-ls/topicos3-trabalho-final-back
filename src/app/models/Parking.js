@@ -12,15 +12,14 @@ const ParkingSchema = new mongoose.Schema(
             type: String,
             required: true
         },
+        cnpj: {
+            type: Number,
+            required: true
+        },
         parkingSpacesTotal: {
             type: Number,
             required: true
         },
-        /*driver: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Driver',
-            required: false
-        },*/
         parkingSpacesOccupied: {
             type: Number,
             required: true

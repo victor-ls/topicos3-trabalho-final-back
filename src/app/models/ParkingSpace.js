@@ -12,11 +12,19 @@ const ParkingSpaceSchema = new mongoose.Schema(
             type: Boolean,
             required: true
         },
-
-        parkingLot: [{
+        numericID: {
+            type: Number,
+            required: true
+        },
+        parkingLot_id: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Parking',
             required: true
+        },
+        history: [{
+            driver_id: String,
+            entryTime: Date,
+            departureTime: Date,
         }],
     },
     {

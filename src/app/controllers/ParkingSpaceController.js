@@ -18,7 +18,23 @@ class ParkingSpaceController {
         }
     }
 
-    async store(req, res) {
+    async storeMany(qdt, id) {
+        for (var i = 0; i <= qdt; i++) {
+            var parkingSpace = new ParkingSpace({
+                isFree: true,
+                numericID: i+1,
+                parkingLot_id: id,
+                history: [],
+            })
+            console.log(parkingSpace)
+            await ParkingSpace.create(parkingSpace)
+        }
+
+    }
+
+
+    /*
+        async storeMany(req, res) {
         console.log(req.body)
         //const { isFree } = req.body
         console.log(req.parkingLot)
@@ -38,6 +54,8 @@ class ParkingSpaceController {
 
         }
     }
+    */
+
 }
 
 export default new ParkingSpaceController()
