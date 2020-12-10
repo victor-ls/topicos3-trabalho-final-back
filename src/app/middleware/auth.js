@@ -8,6 +8,7 @@ const auth = async (req, res, next) => {
         console.log(token)
         //VALIDA O TOKEN
         const decoded = jwt.verify(token, 'PARKINGLOT')
+        console.log(decoded)
         //SEARCH FOR A USER WITH THIS TOKEN
         const driver = await Driver.findOne({ _id: decoded._id, 'tokens.token': token })
         if (!driver) {

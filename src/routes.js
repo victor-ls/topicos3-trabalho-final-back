@@ -11,11 +11,12 @@ const routes = new Router();
 
 routes.get("/driver", DriverController.index);
 routes.post("/driver", DriverController.store);
-routes.put("/driver/:id", DriverController.update);
-routes.delete("/driver/:id", DriverController.delete)
+routes.put("/driver/:id", auth, DriverController.update);
+routes.delete("/driver/", auth, DriverController.delete)
 routes.post("/driver/login", findByCredentials, DriverController.login)
-routes.post("/driver/arrival/:id", DriverController.arrival)
-routes.post("/driver/departure/:id", DriverController.departure)
+routes.post("/driver/logout", auth, DriverController.logout)
+routes.post("/driver/arrival/:id", auth, DriverController.arrival)
+routes.post("/driver/departure/:id", auth, DriverController.departure)
 routes.post("/parkingLot", ParkingController.store)
 routes.get("/parkingLot/", ParkingController.index)
 routes.get("/parkingLot/:id", ParkingController.checkParkingLot)
