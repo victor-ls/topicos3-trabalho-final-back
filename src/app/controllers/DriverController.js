@@ -24,9 +24,14 @@ class DriverController {
         if (!(name && cars && cpf && email && password && deficiency)) {
             return res.status(422).json({ message: "Nome, Placa do Carro, CPF, Email, Senha e Informação de deficiência são obrigatórios" })
         }
+        console.log('teste')
 
         try {
             const driver = await Driver.create(req.body)
+            console.log(driver)
+            const token = await driver.generateAuthToken()
+            console.log(token)
+
 
             return res.status(201).json(driver)
         } catch (error) {
@@ -58,19 +63,38 @@ class DriverController {
     }
 
     async delete(req, res) {
-        if (!req.params.id) {
-            return res.status(400).json({ message: "É necessário passar o ID do motorista" })
-        }
 
         try {
-            await Driver.deleteOne({
-                _id: req.params.id
-            })
+            await req.driver.remove()
+            res.send(req.driver)
         } catch (error) {
             return res.status(500).json({ message: `Erro no servidor! ${error}` })
         }
-        return res.json({ message: "O motorista foi excluído" })
     }
+
+    async login(req, res) {
+        console.log('login')
+        //try {
+        console.log(req.driver)
+        const driver = req.driver
+        const token = await driver.generateAuthToken()
+        res.send({ driver, token })
+        //}/* catch (err) {
+        //res.status(400).send()
+    }
+
+    async logout(req, res) {
+        try {
+            req.driver.tokens = req.driver.tokens.filter((token) => {
+                return token.token != req.token
+            })
+            await req.driver.save()
+            res.send()
+        } catch (error) {
+            res.status(500).send()
+        }
+    }
+
 
     async arrival(req, res) {
         const arrivalTime = moment()
