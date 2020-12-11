@@ -33,11 +33,9 @@ routes.post("/driver/login", findByCredentials, DriverController.login)
 routes.post("/driver/logout", auth, DriverController.logout)
 routes.post("/driver/arrival/:id", auth, DriverController.arrival)
 routes.post("/driver/departure/:id", auth, DriverController.departure)
-routes.post("/parkingLot", ParkingController.store)
-routes.get("/parkingLot/", ParkingController.index)
-routes.get("/parkingLot/:id", ParkingController.checkParkingLot)
+
 routes.get("/parkingLot/:parkingLotId", ParkingSpaceController.index)
-routes.post("/parkingSpaces/:parkingLotId/:numberOfSpaces", getParkingLot, ParkingSpaceController.store)
+//routes.post("/parkingSpaces/:parkingLotId/:numberOfSpaces", getParkingLot, ParkingSpaceController.store)
 
 
 export default routes;

@@ -12,6 +12,7 @@ All request are made on port 3000
 Command to execute the application:
 * yarn dev
 
+The endpoints that require authentication need to be executed with Bearer <Token> on authentication header.
 
 ## Endpoints
 ## Driver
